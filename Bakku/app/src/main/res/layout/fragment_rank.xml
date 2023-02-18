@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rankFragment"
+    tools:context="com.example.bakku.fragments.RankFragment">
+
+    <TextView
+        android:id="@+id/rank_Fragment_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="랭킹 프래그먼트"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>
