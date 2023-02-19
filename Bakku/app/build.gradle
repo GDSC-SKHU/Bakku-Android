@@ -24,16 +24,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    // classpath 추가
-    /*buildscript {
-        repositories {
-            google()
-        }
-        dependencies {
-            def nav_version = "2.5.3"
-            classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
-        }
-    }*/
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -62,4 +52,10 @@ dependencies {
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    //ViewPager
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation 'me.relex:circleindicator:2.1.4'
 }
+
+
