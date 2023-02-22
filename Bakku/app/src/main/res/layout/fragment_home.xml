@@ -10,9 +10,10 @@
 
     <!--슬라이드 화면 구현 -->
     <FrameLayout
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/frameSize">
+        android:layout_height="@dimen/frameSize"
+        android:id="@+id/home_slide_view">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewpager"
@@ -29,11 +30,23 @@
 
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/text"
+    <!--바다 리스트 (거리 가까운순) -->
+    <ScrollView
+        android:id="@+id/home_sea_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="스크롤뷰 만들기"
-        android:gravity="center"/>
+        android:layout_height="230dp"
+        android:layout_below="@+id/home_slide_view"
+        android:layout_marginTop="20dp">
+    </ScrollView>
+
+    <!--바꾸들 -->
+    <ScrollView
+        android:id="@+id/home_team_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/home_sea_scroll_view">
+
+    </ScrollView>
 
 </RelativeLayout>
