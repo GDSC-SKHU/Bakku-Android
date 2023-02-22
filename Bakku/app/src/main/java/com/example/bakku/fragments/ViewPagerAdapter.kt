@@ -1,4 +1,4 @@
-package com.example.bakku
+package com.example.bakku.fragments
 
 import android.text.Layout
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.view.ViewParent
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.example.bakku.R
 
 class ViewPagerAdapter(private val images:List<Int>) :
     RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {

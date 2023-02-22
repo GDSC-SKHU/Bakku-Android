@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--Internet Permission-->
     <uses-permission android:name="android.permission.INTERNET "/>
 
     <application
@@ -27,7 +28,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".presentation.LoginActivity" />
+        <activity android:name=".presentation.LoginActivity" ></activity>
     </application>
 
 </manifest>

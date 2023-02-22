@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- fragment 는 RelativeLayout 안에서 존재 가능 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,69 +8,32 @@
     android:id="@+id/homeFragment"
     tools:context="com.example.bakku.fragments.HomeFragment">
 
-
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewpager2"
+    <!--슬라이드 화면 구현 -->
+    <FrameLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_centerInParent="true" >
-    </androidx.viewpager2.widget.ViewPager2>
+        android:layout_height="@dimen/frameSize">
 
-    <LinearLayout
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/frameSize"
+            android:clipChildren="false"
+            android:clipToPadding="false" />
+
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_gravity="bottom"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="50dp"
-        android:gravity="center"
-        android:layout_alignParentBottom="true">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="0dp"
-            android:layout_margin="10dp">
-
-            <ImageView
-                android:id="@+id/iv1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="0dp"
-            android:layout_margin="10dp">
-
-            <ImageView
-                android:id="@+id/iv2"
-                android:layout_width="3dp"
-                android:layout_height="match_parent"
-                />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="0dp"
-            android:layout_margin="10dp">
-
-            <ImageView
-                android:id="@+id/iv3"
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                />
-
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-
-
+        android:layout_height="match_parent"
+        android:text="스크롤뷰 만들기"
+        android:gravity="center"/>
 
 </RelativeLayout>
