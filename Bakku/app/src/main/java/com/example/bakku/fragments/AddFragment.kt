@@ -1,17 +1,20 @@
 package com.example.bakku.fragments
 
+import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Spinner
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
+import coil.load
 import com.example.bakku.R
 import com.example.bakku.databinding.FragmentAddBinding
-import com.example.bakku.databinding.FragmentHomeBinding
 
 class AddFragment : Fragment() {
 
@@ -49,7 +52,9 @@ class AddFragment : Fragment() {
 
         // 갤러리 업로드 리스너
         // 참고 코드 https://crazykim2.tistory.com/441
-        var btnRep : AppCompatButton = v.findViewById(R.id.iv_add_rep)
+        var btnRep : AppCompatButton = v.findViewById(R.id.btn_add_rep)
+        var ivRep : ImageView = v.findViewById(R.id.iv_add_rep)
+
 
         btnRep.setOnClickListener {
         }
