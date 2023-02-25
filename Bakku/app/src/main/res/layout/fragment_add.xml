@@ -24,9 +24,23 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/rectangle_round_10"
             android:backgroundTint="@color/gray"
-            app:layout_constraintTop_toBottomOf="@+id/tv_add_rep"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_add_rep"
+            tools:layout_editor_absoluteX="20dp" />
+
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_add_rep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="80dp"
+            android:backgroundTint="@color/gray"
+            android:src="@drawable/ic_add_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_add_rep" />
 
         <TextView
             android:id="@+id/tv_add_before"
@@ -47,6 +61,17 @@
             android:backgroundTint="@color/gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_add_before"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_add_before"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="80dp"
+            android:backgroundTint="@color/gray"
+            android:src="@drawable/ic_add_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_add_before" />
 
         <TextView
             android:id="@+id/tv_add_after"
@@ -72,17 +97,29 @@
             app:layout_constraintLeft_toRightOf="@+id/iv_add_before"
             app:layout_constraintTop_toBottomOf="@+id/tv_add_before" />
 
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_add_after"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="280dp"
+            android:layout_marginTop="80dp"
+            android:backgroundTint="@color/gray"
+            android:src="@drawable/ic_add_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_add_before" />
+
         <Spinner
             android:id="@+id/sp_add_select_sea"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
+            android:prompt="@string/select_clean_sea"
             app:layout_constraintTop_toBottomOf="@+id/iv_add_before"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
-            android:id="@+id/tv_add_selece_date"
+            android:id="@+id/tv_add_select_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -99,7 +136,7 @@
             android:calendarViewShown="false"
             android:layout_margin="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_add_selece_date"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_add_select_date"/>
 
         <EditText
             android:id="@+id/edt_add_quantity"
@@ -136,7 +173,7 @@
             android:background="@drawable/rectangle_round_10"
             android:text="@string/finish"
             android:theme="@style/B15"
-            app:layout_constraintTop_toBottomOf="@+id/edt_add_describe"
+            app:layout_constraintTop_toBottomOf="@+id/edt_add_describe"/>
 
 
         <TextView

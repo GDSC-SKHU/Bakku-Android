@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Bakku</string>
 
+    <!--login 뷰-->
+    <string name="login">GOOGLE LOGIN</string>
+
     <!--home 뷰-->
     <string name="sea">해수욕장명</string>
     <string name="location">주소</string>

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import com.example.bakku.R
 import com.example.bakku.databinding.FragmentAddBinding
@@ -33,25 +34,6 @@ class AddFragment : Fragment() {
         var adapter = ArrayAdapter(requireContext(),R.layout.fragment_add,sData)
         //requireContext() : Return the Context this fragment is currently associated with.
         spinner.adapter = adapter
-        /*
-
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                println("당신의 히어로는 " +list_of_items[position]+ "입니다.")
-                //선택한 히어로의 요약을 출력한다.
-                summary.text = list_of_summary[position];
-
-                //끝에 상세보기 버튼을 하나 추가 하자. 그런데 이방법은 레이아웃에서 위치를 잡아 줘야 하는데 상당히 귀찮네...
-                /*
-                val button = Button(applicationContext)
-                button.layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT)
-                button.text = "상세보기"
-                button.setOnClickListener {
-                    println("상세보기 액티비티 열기")
-                }
-                constraintLayout.addView(button)
-                 */
-            }
-        */
 
         // 아이템 선택 리스너
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -63,6 +45,13 @@ class AddFragment : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 TODO("Not yet implemented")
             }
+        }
+
+        // 갤러리 업로드 리스너
+        // 참고 코드 https://crazykim2.tistory.com/441
+        var btnRep : AppCompatButton = v.findViewById(R.id.iv_add_rep)
+
+        btnRep.setOnClickListener {
         }
     }
 

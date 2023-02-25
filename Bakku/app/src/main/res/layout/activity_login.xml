@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".presentation.LoginActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -16,20 +16,24 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/main_menu"
-            app:title="@string/app_name" />
-        <!--  app:navigationIcon="@drawable/ic_baseline_dehaze_24" -->
-
+            app:title="@string/app_name" /> -->
+    <!--  app:navigationIcon="@drawable/ic_baseline_dehaze_24" -->
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
+        android:drawableLeft="@drawable/drawable_resize_google"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="350dp"
+        android:padding="10dp"
         android:layout_marginRight="30dp"
+        android:background="@drawable/rectangle_round_10"
         android:backgroundTint="@color/blue_200"
-        android:text="로그인" />
+        android:theme="@style/B15"
+        android:gravity="center"
+        android:text="@string/login" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
