@@ -1,2 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <style name="B15">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="B28">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">28dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="SB14">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="R20">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="M14">
+        <item name="fontFamily">@font/pretendard_medium</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>

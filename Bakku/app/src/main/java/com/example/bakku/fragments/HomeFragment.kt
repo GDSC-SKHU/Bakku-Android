@@ -8,12 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.bakku.R
 import com.example.bakku.databinding.FragmentHomeBinding
+import com.example.bakku.data.local.SeaModel
+import com.example.bakku.recyclerview.SeaRecyclerAdapter
 import me.relex.circleindicator.CircleIndicator3
 
 
@@ -26,6 +29,13 @@ class HomeFragment : Fragment() {
     private lateinit var pagerAdapter: FragmentStateAdapter
     private var num_page: Int = 4
     private lateinit var mIndicator: CircleIndicator3
+
+    //recycler view
+    //데이터를 담을 배열
+    var seaList = ArrayList<SeaModel>()
+
+    private lateinit var seaRecyclerAdapter: SeaRecyclerAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,9 +97,28 @@ class HomeFragment : Fragment() {
         }
         //slide view end
 
+        //recycler view
+        for (i in 1..10){
+            var seaModel = SeaModel("해수욕장 $i","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqs11H00-aBaQjtB11-pSYYSqQRluXw3qWa4UuaHVKzA&s","주소 $i")
+            this.seaList.add(seaModel)
+        }
+
+        //어답터 인스턴스 생성
+        seaRecyclerAdapter = SeaRecyclerAdapter()
+        seaRecyclerAdapter.submitList(this.seaList)
+
+        //리사이클러뷰 설정
+        val home_sea_recycler_view = v.findViewById<RecyclerView>(R.id.home_sea_recycler_view)
+        home_sea_recycler_view.apply {
+            //context 부분 this@HomeFragment
+            layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+
+            //어답터 장착
+            adapter = seaRecyclerAdapter
+        }
+
         return mBinding?.root
     }
-
     override fun onDestroyView() {
         mBinding = null
         super.onDestroyView()
