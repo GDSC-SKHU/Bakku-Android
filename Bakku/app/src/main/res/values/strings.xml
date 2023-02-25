@@ -7,12 +7,12 @@
 
     <!--add 뷰-->
     <string name="rep">대표 사진을 올려주세요</string>
-    <string name="before">청소 이전 사진 등록</string>
-    <string name="after">청소 이후 사진 등록</string>
+    <string name="before">청소 이전 사진을 올려주세요</string>
+    <string name="after">청소 이후 사진을 올려주세요</string>
     <string name="select_clean_sea">청소한 해수욕장 선택</string>
-    <string name="select_date">날짜 선택</string>
+    <string name="select_date">청소한 날짜를 선택해주세요</string>
     <string name="cleaner_name">청소한 사람명</string>
-    <string name="clean_quantitiy">청소한 양</string>
+    <string name="clean_quantitiy">쓰레기 무게를 입력해주세요(Kg) </string>
     <string name="describe">설명 (최대 255자)</string>
     <string name="finish">완료</string>
 
