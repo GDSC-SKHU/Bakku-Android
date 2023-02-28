@@ -1,5 +1,6 @@
 package com.example.bakku.fragments
 
+import android.app.TabActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,9 @@ import com.example.bakku.databinding.FragmentRankBinding
 class RankFragment : Fragment() {
 
     private var mBinding : FragmentRankBinding? = null
+    private lateinit var fragmentSea : Fragment
+    private lateinit var frgmentAll : Fragment
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

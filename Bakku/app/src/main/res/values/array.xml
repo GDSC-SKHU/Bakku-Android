@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="sea">
+    <string-array name="seas">
         <item>해수욕장을 선택하세요</item>
         <item>광안리 해수욕장</item>
         <item>을왕리 해수욕장</item>

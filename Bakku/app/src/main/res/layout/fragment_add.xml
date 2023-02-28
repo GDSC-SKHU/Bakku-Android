@@ -57,10 +57,12 @@
             android:layout_width="170dp"
             android:layout_height="150dp"
             android:layout_margin="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/rectangle_round_10"
             android:backgroundTint="@color/gray"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_add_before"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_add_before" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_add_before"
@@ -113,8 +115,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:spinnerMode="dialog"
-            android:prompt="@string/select_clean_sea"
+            android:spinnerMode="dropdown"
             app:layout_constraintTop_toBottomOf="@+id/iv_add_before"
             app:layout_constraintStart_toStartOf="parent"/>
 
