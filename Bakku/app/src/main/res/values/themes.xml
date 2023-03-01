@@ -3,6 +3,7 @@
     <style name="Theme.Bakku" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!--기존 앱 바 없애기 -->
         <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
 
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue_200</item>

@@ -19,4 +19,23 @@
     <string name="describe">설명 (최대 255자)</string>
     <string name="finish">완료</string>
 
+    <!--bakku detail 뷰-->
+    <string name="detail_ocean">청소한 바다 : </string>
+    <string name="detail_team">청소한 단체 / 개인명 : </string>
+    <string name="detail_date">날짜 : </string>
+    <string name="detail_before">Before</string>
+    <string name="detail_after">After</string>
+    <string name="detail_quantitiy">청소한 양 (Kg) : </string>
+    <string name="detail_describe">설명 : </string>
+
+    <!--ocean detail 뷰 -->
+    <string name="ocean_name">해수욕장명</string>
+    <string name="ocean_location">해수욕장 주소</string>
+    <string name="ocean_bakkus">이 바다를 가꾼 바꾸들</string>
+
+    <!--행사 뷰-->
+    <string name="event_name">행사명</string>
+    <string name="event_date">행사 기간</string>
+    <string name="event_describe">행사 설명</string>
+
 </resources>

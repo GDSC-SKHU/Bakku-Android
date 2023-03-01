@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
     //slide view here
     private lateinit var mPager : ViewPager2
     private lateinit var pagerAdapter: FragmentStateAdapter
-    private var num_page: Int = 4
+    private var num_page : Int = 4
     private lateinit var mIndicator: CircleIndicator3
 
     //recycler view
