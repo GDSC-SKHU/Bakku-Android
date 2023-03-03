@@ -75,6 +75,10 @@ dependencies {
     // coil - 이미지 로딩
     implementation("io.coil-kt:coil:2.2.2")
 
+    //google map
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
+
 
 }
 
