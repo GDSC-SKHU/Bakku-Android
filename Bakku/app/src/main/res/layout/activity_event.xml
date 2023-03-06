@@ -42,8 +42,7 @@
 
 
     <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView_event"
-        android:name="com.google.android.gms.maps.MapFragment"
+        android:id="@+id/mv_event"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="@drawable/rectangle_round_10"
