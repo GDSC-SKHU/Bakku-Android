@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Bakku</string>
 
+    <!--navigation drawer 뷰 -->
+    <string name="nd_name">이름</string>
+    <string name="nd_mypage">마이페이지</string>
+    <string name="nd_logout">로그아웃</string>
+
     <!--login 뷰-->
     <string name="login">GOOGLE  LOGIN</string>
 

@@ -15,9 +15,10 @@ import com.example.bakku.databinding.ActivityEventBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 
-class EventActivity : AppCompatActivity() {
+class EventActivity : AppCompatActivity() ,OnMapReadyCallback  {
     private lateinit var binding : ActivityEventBinding
     lateinit var mapView: MapView
 
@@ -29,16 +30,9 @@ class EventActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         mapView = findViewById(R.id.mv_event)
-        
-    }
-
-    //맵이 로딩된 후 호출 될 함수
-    fun onMapReady(googleMap: GoogleMap?) {
-        val seoul = LatLng(37.566,126.978)
-        googleMap?.moveCamera(CameraUpdateFactory.newLatLng(seoul))
-        googleMap?.moveCamera(CameraUpdateFactory.zoomTo(10f))
 
     }
+
 
     override fun onStart() {
         mapView.onStart()
@@ -68,6 +62,13 @@ class EventActivity : AppCompatActivity() {
     override fun onLowMemory() {
         mapView.onLowMemory()
         super.onLowMemory()
+    }
+
+    //맵이 로딩된 후 호출 될 함수
+    override fun onMapReady(p0: GoogleMap) {
+        val seoul = LatLng(37.566,126.978)
+        p0?.moveCamera(CameraUpdateFactory.newLatLng(seoul))
+        p0?.moveCamera(CameraUpdateFactory.zoomTo(10f))
     }
 
 }
