@@ -12,11 +12,11 @@
 
         <ImageView
             android:id="@+id/imgBanner3"
-            android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#aaff88"
-            android:contentDescription="@string/app_name"/>
+            android:layout_centerInParent="true"
+            android:background="@color/blue_200"
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:id="@+id/tvName3"

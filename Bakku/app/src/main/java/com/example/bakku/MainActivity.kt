@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 drawerLayout = findViewById(R.id.drawerLayout)
                 drawerLayout.openDrawer(GravityCompat.START)    // 네비게이션 드로어 열기
             }
-            R.id.hamberger-> Snackbar.make(toolbar,"Hamberger menu pressed",Snackbar.LENGTH_SHORT).show()
+           // R.id.hamberger-> Snackbar.make(toolbar,"Hamberger menu pressed",Snackbar.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
     }

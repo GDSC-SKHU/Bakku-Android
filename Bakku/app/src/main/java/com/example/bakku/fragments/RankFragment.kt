@@ -5,36 +5,65 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.example.bakku.R
-import com.example.bakku.databinding.FragmentHomeBinding
-import com.example.bakku.databinding.FragmentRankBinding
+
+import com.google.android.material.tabs.TabLayout
 
 class RankFragment : Fragment() {
 
-    private var mBinding : FragmentRankBinding? = null
-    private lateinit var fragmentSea : Fragment
-    private lateinit var frgmentAll : Fragment
+    private lateinit var tabLayout: TabLayout
+    private lateinit var viewPager: ViewPager
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var binding = FragmentRankBinding.inflate(inflater,container,false)
-        mBinding = binding
-        return mBinding?.root
+        val view = inflater.inflate(R.layout.fragment_rank, container, false)
 
-        childFragmentManager.beginTransaction().replace(R.id.tabSea_rank,fragmentSea).commit()
+        tabLayout = view.findViewById(R.id.tab_layout)
+        viewPager = view.findViewById(R.id.view_pager)
 
-        //fragment에서 findViewById 사용
-        val v : View = inflater.inflate(R.layout.fragment_rank,container,false)
+        // 어댑터 생성
+        val adapter = MyPagerAdapter(childFragmentManager)
+
+        // 탭 페이지 추가
+        adapter.addFragment(RankAllFragment(), "전체")
+        adapter.addFragment(RankOceanFragment(), "해수욕장별")
+
+        // 어댑터 설정
+        viewPager.adapter = adapter
+        tabLayout.setupWithViewPager(viewPager)
+
+        return view
 
     }
 
-    override fun onDestroyView() {
-        mBinding = null
-        super.onDestroyView()
+    private class MyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+
+        private val fragmentList = ArrayList<Fragment>()
+        private val fragmentTitleList = ArrayList<String>()
+
+        override fun getItem(position: Int): Fragment {
+            return fragmentList[position]
+        }
+
+        override fun getCount(): Int {
+            return fragmentList.size
+        }
+
+        fun addFragment(fragment: Fragment, title: String) {
+            fragmentList.add(fragment)
+            fragmentTitleList.add(title)
+        }
+
+        override fun getPageTitle(position: Int): CharSequence? {
+            return fragmentTitleList[position]
+        }
     }
+
 }

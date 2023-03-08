@@ -42,8 +42,8 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var binding = FragmentHomeBinding.inflate(inflater,container,false)
-        mBinding = binding
+        /*var binding = FragmentHomeBinding.inflate(inflater,container,false)
+        mBinding = binding*/
 
         // fragment에서 findViewById 사용 (viewpager 부분)
         val v : View = inflater.inflate(R.layout.fragment_home,container,false)
@@ -98,7 +98,7 @@ class HomeFragment : Fragment() {
         //slide view end
 
         //recycler view
-        for (i in 1..10){
+        /*for (i in 1..10){
             var seaModel = SeaModel("해수욕장 $i","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqs11H00-aBaQjtB11-pSYYSqQRluXw3qWa4UuaHVKzA&s","주소 $i")
             this.seaList.add(seaModel)
         }
@@ -115,13 +115,11 @@ class HomeFragment : Fragment() {
 
             //어답터 장착
             adapter = seaRecyclerAdapter
-        }
+        }*/
 
-        return mBinding?.root
+        //return mBinding?.root
+        return v
     }
-    override fun onDestroyView() {
-        mBinding = null
-        super.onDestroyView()
-    }
+
 
 }

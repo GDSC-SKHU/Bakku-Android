@@ -30,20 +30,6 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/main_navigation_btn1"
-                android:clickable="true"
-                android:enabled="false"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#313131"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_marginLeft="21dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/nd_name"
-                android:textSize="18sp"
-                android:textColor="#777777"/>
-
-            <Button
                 android:id="@+id/main_navigation_btn2"
                 android:clickable="true"
                 android:enabled="false"
@@ -53,6 +39,7 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_marginLeft="21dp"
                 android:text="@string/nd_mypage"
+                android:theme="@style/B15"
                 android:textSize="18sp"
                 android:textColor="#777777"/>
 
@@ -66,6 +53,7 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_marginLeft="21dp"
                 android:text="@string/nd_logout"
+                android:theme="@style/B15"
                 android:textSize="18sp"
                 android:textColor="#777777"/>
         </LinearLayout>
