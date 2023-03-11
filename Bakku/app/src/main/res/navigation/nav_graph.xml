@@ -20,5 +20,10 @@
         android:name="com.example.bakku.fragments.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" />
+    <fragment
+        android:id="@+id/mypageFragment"
+        android:name="com.example.bakku.fragments.MypageFragment"
+        android:label="fragment_mypage"
+        tools:layout="@layout/fragment_mypage" />
 
 </navigation>

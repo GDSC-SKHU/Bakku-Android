@@ -1,5 +1,6 @@
 package com.example.bakku
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -16,13 +17,13 @@ import com.example.bakku.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelectedListener*/ {
 
-    private var isNavigationOpen = false
+    //private var isNavigationOpen = false
 
     private lateinit var mBinding : ActivityMainBinding
-    lateinit var navigationView : NavigationView
-    lateinit var drawerLayout : DrawerLayout
+    //lateinit var navigationView : NavigationView
+    //lateinit var drawerLayout : DrawerLayout
     lateinit var toolbar : androidx.appcompat.widget.Toolbar
 
 
@@ -42,15 +43,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         NavigationUI.setupWithNavController(mBinding.myBottomNav,navController)
 
 
-        setToolbar()
+        //setToolbar()
 
-        navigationView = findViewById(R.id.navigationView)
-        navigationView.setNavigationItemSelectedListener(this)
+        //navigationDrawer
+       /* navigationView = findViewById(R.id.navigationView)
+        navigationView.setNavigationItemSelectedListener(this)*/
 
     }
 
     // 툴바 사용 설정
-    private fun setToolbar(){
+    /*private fun setToolbar(){
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -104,7 +106,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }else{
             super.onBackPressed()
         }
-    }
+    }*/
 
 
 }

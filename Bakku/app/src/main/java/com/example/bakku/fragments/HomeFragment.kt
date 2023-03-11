@@ -2,6 +2,7 @@ package com.example.bakku.fragments
 
 //import com.example.bakku.fragments.ViewPagerAdapter
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,13 +17,14 @@ import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.bakku.R
 import com.example.bakku.databinding.FragmentHomeBinding
 import com.example.bakku.data.local.SeaModel
+import com.example.bakku.presentation.EventActivity
 import com.example.bakku.recyclerview.SeaRecyclerAdapter
 import me.relex.circleindicator.CircleIndicator3
 
 
 class HomeFragment : Fragment() {
 
-    private var mBinding : FragmentHomeBinding? = null
+    //private var mBinding : FragmentHomeBinding? = null
 
     //slide view here
     private lateinit var mPager : ViewPager2
@@ -35,6 +37,7 @@ class HomeFragment : Fragment() {
     var seaList = ArrayList<SeaModel>()
 
     private lateinit var seaRecyclerAdapter: SeaRecyclerAdapter
+
 
 
     override fun onCreateView(
@@ -120,6 +123,5 @@ class HomeFragment : Fragment() {
         //return mBinding?.root
         return v
     }
-
 
 }

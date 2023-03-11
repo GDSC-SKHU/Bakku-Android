@@ -11,20 +11,21 @@ import com.example.bakku.R
 
 class RankAllFragment : Fragment() {
 
+    private lateinit var spinner: Spinner
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.rank_all_fragment, container, false)
-        /*val mySpinner = view.findViewById<Spinner>(R.id.my_spinner)
 
-        // Spinner에 표시될 아이템을 배열로 정의합니다.
-        val items = arrayOf("item1", "item2", "item3")
+        spinner = view.findViewById(R.id.sp_rank_all)
 
-        // ArrayAdapter를 생성하여 Spinner에 아이템을 추가합니다.
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
-        mySpinner.adapter = adapter*/
+        val adapter = ArrayAdapter.createFromResource(requireContext(),
+            R.array.rank_all, android.R.layout.simple_spinner_item)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
 
         return view
     }

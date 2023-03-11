@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.bakku.databinding.FragmentHomeSlide1Binding
 
 
+
 class HomeSlide1Fragment : Fragment() {
 
     private var mBinding : FragmentHomeSlide1Binding? = null

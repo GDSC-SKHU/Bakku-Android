@@ -20,4 +20,10 @@
         android:icon="@drawable/ic_add"
         />
 
+    <item
+        android:id="@+id/mypageFragment"
+        android:title="마이페이지"
+        android:icon="@drawable/ic_mypage"
+        />
+
 </menu>
