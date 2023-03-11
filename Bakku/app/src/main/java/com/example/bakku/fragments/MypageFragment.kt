@@ -28,7 +28,7 @@ class MypageFragment : Fragment() {
 
         // 10번 반복
         for(i in 1 .. 10){
-            var mypageModel = MypageModel(name = "성공회대학교", oceanImage = "https://news.samsungdisplay.com/wp-content/uploads/2022/05/IT_twi001t1345955-1-1024x639.jpg", date = "2023-03-12")
+            var mypageModel = MypageModel(name = "성공회대학교", oceanImage = "https://news.samsungdisplay.com/wp-content/uploads/2022/05/IT_twi001t1345955-1-1024x639.jpg", date = "2023-03-12", weight = "10kg")
             this.modelList.add(mypageModel)
         }
 
