@@ -43,4 +43,11 @@
     <string name="event_date">행사 기간</string>
     <string name="event_describe">행사 설명</string>
 
+    <!--마이페이지 뷰 -->
+    <string name="mypage_name">이름 : </string>
+    <string name="mypage_email">이메일 : </string>
+    <string name="mypage_logout">logout</string>
+    <string name="mypage_date">날짜 : </string>
+    <string name="mypage_kg">kg</string>
+
 </resources>
