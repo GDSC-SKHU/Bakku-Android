@@ -33,43 +33,51 @@
 
 
     <!--리사이클러뷰 : 바다 리스트 (거리 가까운순) -->
-    <ScrollView
+    <LinearLayout
         android:id="@+id/home_sea_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="230dp"
         android:layout_below="@+id/home_slide_view"
+        android:padding="10dp"
         android:layout_marginTop="20dp">
-        <LinearLayout
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/gray"
             android:orientation="vertical">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/home_sea_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </LinearLayout>
-    </ScrollView>
+                android:layout_height="match_parent"
+                android:background="@color/gray" />
+        </ScrollView>
+    </LinearLayout>
 
     <!--바꾸들 -->
-    <ScrollView
+    <LinearLayout
         android:id="@+id/home_team_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="230dp"
         android:layout_marginTop="20dp"
+        android:padding="10dp"
         android:layout_below="@+id/home_sea_scroll_view">
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:backgroundTint="@color/gray">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/home_bakku_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/gray"
                 android:paddingRight="20dp"
                 android:paddingBottom="8dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 />
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+    </LinearLayout>
 
 </RelativeLayout>

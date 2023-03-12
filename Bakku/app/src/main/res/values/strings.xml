@@ -12,6 +12,8 @@
     <!--home 뷰-->
     <string name="sea">해수욕장명</string>
     <string name="location">주소</string>
+    <string name="date">날짜 : </string>
+    <string name="kg">kg</string>
 
     <!--add 뷰-->
     <string name="rep">대표 사진을 올려주세요</string>

@@ -19,6 +19,12 @@ class MypageRecyclerAdapter : RecyclerView.Adapter<MypageViewHolder>() {
         return 10
     }
 
+    // 아이템 추가
+    fun addItem(item:MypageModel) {
+        modelList.add(item)
+        notifyDataSetChanged()
+    }
+
     // 뷰와 뷰홀더가 묶였을 때
     override fun onBindViewHolder(holder: MypageViewHolder, position: Int) {
         holder.bind(this.modelList[position])

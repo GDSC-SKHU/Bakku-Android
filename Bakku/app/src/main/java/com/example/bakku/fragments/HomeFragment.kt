@@ -16,9 +16,14 @@ import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.bakku.R
 import com.example.bakku.databinding.FragmentHomeBinding
-import com.example.bakku.data.local.SeaModel
 import com.example.bakku.presentation.EventActivity
-import com.example.bakku.recyclerview.SeaRecyclerAdapter
+import com.example.bakku.recyclerview.home.HomeBakkuModel
+import com.example.bakku.recyclerview.home.HomeBakkuRecyclerAdapter
+import com.example.bakku.recyclerview.home.HomeOceanModel
+import com.example.bakku.recyclerview.home.HomeOceanRecyclerAdapter
+import com.example.bakku.recyclerview.mypage.MypageModel
+import com.example.bakku.recyclerview.mypage.MypageRecyclerAdapter
+
 import me.relex.circleindicator.CircleIndicator3
 
 
@@ -33,10 +38,15 @@ class HomeFragment : Fragment() {
     private lateinit var mIndicator: CircleIndicator3
 
     //recycler view
-    //데이터를 담을 배열
-    var seaList = ArrayList<SeaModel>()
+    // 데이터를 잠을 그릇 즉 배열에 MypageModel
+    var modelList1 = ArrayList<HomeOceanModel>()
+    var modelList2 = ArrayList<HomeBakkuModel>()
 
-    private lateinit var seaRecyclerAdapter: SeaRecyclerAdapter
+    private lateinit var homeOceanRecyclerAdapter: HomeOceanRecyclerAdapter
+    private lateinit var home_ocean_recycler_view : RecyclerView
+
+    private lateinit var homeBakkuRecyclerAdapter: HomeBakkuRecyclerAdapter
+    private lateinit var home_bakku_recycler_view : RecyclerView
 
 
 
@@ -45,8 +55,6 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        /*var binding = FragmentHomeBinding.inflate(inflater,container,false)
-        mBinding = binding*/
 
         // fragment에서 findViewById 사용 (viewpager 부분)
         val v : View = inflater.inflate(R.layout.fragment_home,container,false)
@@ -98,29 +106,46 @@ class HomeFragment : Fragment() {
                 page.translationY = myOffset
             }
         }
-        //slide view end
 
-        //recycler view
-        /*for (i in 1..10){
-            var seaModel = SeaModel("해수욕장 $i","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqs11H00-aBaQjtB11-pSYYSqQRluXw3qWa4UuaHVKzA&s","주소 $i")
-            this.seaList.add(seaModel)
+        // 10번 반복
+        for(i in 1 .. 10){
+            var homeOceanModel = HomeOceanModel(sea = "을왕리 해수욕장", location = "을왕리", oceanImg = "https://news.samsungdisplay.com/wp-content/uploads/2022/05/IT_twi001t1345955-1-1024x639.jpg")
+            this.modelList1.add(homeOceanModel)
         }
 
-        //어답터 인스턴스 생성
-        seaRecyclerAdapter = SeaRecyclerAdapter()
-        seaRecyclerAdapter.submitList(this.seaList)
+        // 어탑터 인스턴스 생성
+        homeOceanRecyclerAdapter = HomeOceanRecyclerAdapter()
+        homeOceanRecyclerAdapter.submitList(this.modelList1)
 
-        //리사이클러뷰 설정
-        val home_sea_recycler_view = v.findViewById<RecyclerView>(R.id.home_sea_recycler_view)
-        home_sea_recycler_view.apply {
-            //context 부분 this@HomeFragment
-            layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+        // 리사이클러뷰 설정
+        home_ocean_recycler_view = v.findViewById(R.id.home_sea_recycler_view)
+        home_ocean_recycler_view.apply{
+            // 리사이클러뷰 방향 등 설정
+            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+            // 어답터 장착
+            adapter = homeOceanRecyclerAdapter
+        }
 
-            //어답터 장착
-            adapter = seaRecyclerAdapter
-        }*/
+        // 10번 반복
+        for(i in 1 .. 10){
+            var homeBakkuModel = HomeBakkuModel(name = "성공회대학교", oceanImage = "https://news.samsungdisplay.com/wp-content/uploads/2022/05/IT_twi001t1345955-1-1024x639.jpg", date = "2023-03-12", weight = "10kg")
+            this.modelList2.add(homeBakkuModel)
+        }
 
-        //return mBinding?.root
+        // 어탑터 인스턴스 생성
+        homeBakkuRecyclerAdapter = HomeBakkuRecyclerAdapter()
+        homeBakkuRecyclerAdapter.submitList(this.modelList2)
+
+        // 리사이클러뷰 설정
+        home_bakku_recycler_view = v.findViewById(R.id.home_bakku_recycler_view)
+        home_bakku_recycler_view.apply{
+            // 리사이클러뷰 방향 등 설정
+            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+            // 어답터 장착
+            adapter = homeBakkuRecyclerAdapter
+        }
+
+
         return v
     }
 

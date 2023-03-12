@@ -4,8 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:backgroundTint="@color/blue_200"
-    app:cardCornerRadius="5dp"
-    android:layout_margin="20dp">
+    android:layout_margin="20dp"
+    app:cardCornerRadius="5dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,35 +13,36 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:id="@+id/iv_mypage_recycler"
+            android:id="@+id/iv_home_bakku_recycler"
             android:src="@drawable/ic_mypage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
+            android:id="@+id/tv_home_bakku_recycler_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_mypage_recycler_name"
+            android:layout_marginTop="20dp"
             android:padding="10dp"
             android:text="단체/사용자명 - 해수욕장 이름"
             android:theme="@style/M14"
-            app:layout_constraintLeft_toRightOf="@id/iv_mypage_recycler"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintLeft_toRightOf="@id/iv_home_bakku_recycler"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_mypage_recycler_date"
+            android:id="@+id/tv_home_bakku_recycler_date"
             android:paddingLeft="10dp"
             android:text="날짜"
             android:theme="@style/M14"
-            app:layout_constraintLeft_toRightOf="@id/iv_mypage_recycler"
-            app:layout_constraintTop_toBottomOf="@id/tv_mypage_recycler_name"/>
+            app:layout_constraintLeft_toRightOf="@id/iv_home_bakku_recycler"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_bakku_recycler_name"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_mypage_recycler_kg"
+            android:id="@+id/tv_home_bakku_recycler_kg"
             android:text="@string/mypage_kg"
             android:theme="@style/B15"
             app:layout_constraintRight_toRightOf="parent"
