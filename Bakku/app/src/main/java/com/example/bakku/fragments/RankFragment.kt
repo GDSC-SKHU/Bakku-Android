@@ -1,6 +1,5 @@
 package com.example.bakku.fragments
 
-import android.app.TabActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
