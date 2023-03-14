@@ -63,6 +63,7 @@ class RankFragment : Fragment() {
         override fun getPageTitle(position: Int): CharSequence? {
             return fragmentTitleList[position]
         }
+
     }
 
 }
