@@ -8,10 +8,12 @@ import com.bumptech.glide.Glide
 import com.example.bakku.R
 import com.example.bakku.recyclerview.App
 
-class HomeOceanViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+class HomeOceanViewHolder(itemView : View/*, recyclerviewInterface: HomeOceanRecyclerviewInterface*/) : RecyclerView.ViewHolder(itemView){
     private val home_ocean_recycler_img : ImageView =  itemView.findViewById(R.id.iv_home_ocean_recycler)
     private val home_ocean_recycler_sea : TextView = itemView.findViewById(R.id.tv_home_ocean_recycler_sea)
     private val home_ocean_recycler_location : TextView = itemView.findViewById(R.id.tv_home_ocean_recycler_location)
+
+    private var homeOceanRecyclerviewInterface : HomeOceanRecyclerviewInterface? = null
 
     // 데이터와 뷰를 묶는다
     fun bind(homeOceanModel: HomeOceanModel) {

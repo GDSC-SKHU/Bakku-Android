@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.bakku.databinding.ActivityMainBinding
+import com.example.bakku.fragments.RankFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 
@@ -41,7 +42,6 @@ class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelec
 
         //바텀 네비게이션 뷰와 네비게이션을 묶어준다
         NavigationUI.setupWithNavController(mBinding.myBottomNav,navController)
-
 
         //setToolbar()
 

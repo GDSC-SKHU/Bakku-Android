@@ -14,8 +14,9 @@ class RankOceanFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.rank_ocean_fragment, container, false)
+        /*val view = inflater.inflate(R.layout.fragment_rank_ocean, container, false)
 
-        return view
+        return view*/
+        return inflater.inflate(R.layout.fragment_rank_ocean, container, false)
     }
 }

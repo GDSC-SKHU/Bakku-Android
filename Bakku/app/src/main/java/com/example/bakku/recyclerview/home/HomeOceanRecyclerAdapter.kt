@@ -6,8 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bakku.R
 
 
-class HomeOceanRecyclerAdapter: RecyclerView.Adapter<HomeOceanViewHolder>() {
+class HomeOceanRecyclerAdapter/*(homeOceanRecyclerviewInterface: HomeOceanRecyclerviewInterface)*/: RecyclerView.Adapter<HomeOceanViewHolder>() {
     private var modelList = ArrayList<HomeOceanModel>()
+
+    private var homeOceanRecyclerviewInerface : HomeOceanRecyclerviewInterface? = null
+
+    /*init {
+        this.homeOceanRecyclerviewInerface = homeOceanRecyclerviewInterface
+    }*/
 
     //뷰 홀더가 생성 되었을 때
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeOceanViewHolder {

@@ -52,4 +52,10 @@
     <string name="mypage_date">날짜 : </string>
     <string name="mypage_kg">kg</string>
 
+    <!-- 랭크뷰 -->
+    <string name="tab1_title">전체별</string>
+    <string name="tab2_title">해수욕장별</string>
+    <string name="spinner1_prompt">Select an option</string>
+    <string name="spinner2_prompt">Select an option</string>
+
 </resources>
