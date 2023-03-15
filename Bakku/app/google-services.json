@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "121202610450",
+    "project_id": "bakku-web",
+    "storage_bucket": "bakku-web.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121202610450:android:e4a43ac2b5af4f99aee3cb",
+        "android_client_info": {
+          "package_name": "com.example.bakku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121202610450-jnbpdvvaave39333dmdadqol5b08gdi9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bakku",
+            "certificate_hash": "da469e982e09c094bccc0a4eab2ae6b7f951a6ce"
+          }
+        },
+        {
+          "client_id": "121202610450-kqbjehjbhhjq3niol4rejib7rt1hqonu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_WB9McwUZMxzrB042qbV7oaEZ9wM8oKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121202610450-24k79l16rcolf4keq4r54s0bh35u6fth.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

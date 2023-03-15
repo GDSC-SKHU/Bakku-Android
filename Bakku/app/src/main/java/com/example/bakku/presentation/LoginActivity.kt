@@ -10,10 +10,15 @@ import androidx.appcompat.widget.AppCompatButton
 import com.example.bakku.MainActivity
 import com.example.bakku.R
 import com.example.bakku.databinding.ActivityLoginBinding
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class LoginActivity :AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
+    private lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,15 +26,26 @@ class LoginActivity :AppCompatActivity() {
         setContentView(binding.root)
         clickBtn()
 
-        /*var sData = resources.getStringArray(R.array.seas)
-        val spinner = findViewById<Spinner>(R.id.sp_login_select_sea)
-        var adapter = ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,sData)
-        spinner.adapter = adapter*/
+        auth = Firebase.auth
+    }
+
+    public override fun onStart() {
+        super.onStart()
+
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            //reload()
+        }
     }
 
     private fun clickBtn() {
         binding.btnLogin.setOnClickListener {
-            startActivity(Intent(this,MainActivity::class.java))
+            //startActivity(Intent(this,MainActivity::class.java))
+            BeginSignInRequest.builder().setGoogleIdTokenRequestOptions(
+                BeginSignInRequest.GoogleIdTokenRequestOptions.builder().setSupported(true)
+                    .setServerClientId(getString(R.string.web_client_id)).setFilterByAuthorizedAccounts(true)
+                    .build()
+            ).build()
         }
     }
 

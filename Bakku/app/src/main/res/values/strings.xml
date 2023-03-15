@@ -58,4 +58,7 @@
     <string name="spinner1_prompt">Select an option</string>
     <string name="spinner2_prompt">Select an option</string>
 
+    <!-- 아이디 -->
+    <string name="web_client_id">121202610450-jnbpdvvaave39333dmdadqol5b08gdi9.apps.googleusercontent.com</string>
+
 </resources>
