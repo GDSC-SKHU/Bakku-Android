@@ -9,43 +9,62 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.bakku.R
+import com.example.bakku.recyclerview.mypage.MypageModel
+import com.example.bakku.recyclerview.mypage.MypageRecyclerAdapter
+import com.example.bakku.recyclerview.rank.RankAllModel
+import com.example.bakku.recyclerview.rank.RankAllRecyclerAdapter
+import com.example.bakku.recyclerview.rank.RankOceanModel
+import com.example.bakku.recyclerview.rank.RankOceanRecyclerAdapter
 
 class RankOceanFragment : Fragment() {
+
+    // 데이터를 잠을 그릇 즉 배열에 MypageModel
+    var modelList = ArrayList<RankOceanModel>()
+
+    private lateinit var rankOceanRecyclerAdapter: RankOceanRecyclerAdapter
+    private lateinit var rank_ocean_recycler_view : RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        /*val view = inflater.inflate(R.layout.fragment_rank_ocean, container, false)
-
-        return view*/
-        //return inflater.inflate(R.layout.fragment_rank_ocean, container, false)
 
         val rootView = inflater.inflate(R.layout.fragment_rank_ocean, container, false)
         val spinner: Spinner = rootView.findViewById(R.id.sp_rank_ocean)
 
-        // Spinner에 들어갈 데이터
-        val spinnerData = listOf("Item 1", "Item 2", "Item 3")
-
-        // ArrayAdapter를 사용하여 Spinner에 데이터를 추가
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, spinnerData)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
-
-        // Spinner에서 아이템을 선택할 때의 동작
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                // 선택된 아이템의 위치와 값을 가져옴
-                val selectedItem = parent.getItemAtPosition(position).toString()
-                Toast.makeText(requireContext(), selectedItem, Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // 선택된 아이템이 없을 때의 동작
-            }
+        // Spinner 아이템 추가
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.rank_seas,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
         }
+
+        // 10번 반복
+        for(i in 1 .. 10){
+            var rankOceanModel = RankOceanModel(name = "성공회대학교", oceanImage = "https://news.samsungdisplay.com/wp-content/uploads/2022/05/IT_twi001t1345955-1-1024x639.jpg", date = "2023-03-12", weight = "10kg")
+            this.modelList.add(rankOceanModel)
+        }
+
+        // 어탑터 인스턴스 생성
+        rankOceanRecyclerAdapter = RankOceanRecyclerAdapter()
+        rankOceanRecyclerAdapter.submitList(this.modelList)
+
+        // 리사이클러뷰 설정
+        rank_ocean_recycler_view = rootView.findViewById(R.id.rank_ocean_recycler_view)
+        rank_ocean_recycler_view.apply{
+            // 리사이클러뷰 방향 등 설정
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+            // 어답터 장착
+            adapter = rankOceanRecyclerAdapter
+        }
+
 
         return rootView
     }
