@@ -22,14 +22,5 @@
         android:theme="@style/B15"
         android:gravity="center"
         android:text="@string/login" />
-    <!--
-    <Spinner
-        android:id="@+id/sp_login_select_sea"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
-        android:layout_margin="70dp"
-        />-->
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
