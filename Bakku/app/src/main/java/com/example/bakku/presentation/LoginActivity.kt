@@ -1,21 +1,22 @@
 package com.example.bakku.presentation
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bakku.MainActivity
 import com.example.bakku.R
 import com.example.bakku.databinding.ActivityLoginBinding
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -24,8 +25,66 @@ import com.google.firebase.ktx.Firebase
 
 
 class LoginActivity :AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private val RC_SIGN_IN = 99
 
-    private lateinit var binding : ActivityLoginBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login)
+
+        auth = FirebaseAuth.getInstance()
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        val btnGoogleSignIn = findViewById<Button>(R.id.btn_login)
+        btnGoogleSignIn.setOnClickListener {
+            signInWithGoogle()
+        }
+    }
+
+    private fun signInWithGoogle() {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account)
+            } catch (e: ApiException) {
+                Log.e(TAG, "Google sign in failed", e)
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // 로그인에 성공한 경우 MainActivity로 화면 전환
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Log.e(TAG, "Google sign in failed", task.exception)
+                }
+            }
+    }
+
+    //두번째 시도
+
+    /*private lateinit var binding : ActivityLoginBinding
 
     // firebase Auth
     private lateinit var auth : FirebaseAuth
@@ -99,6 +158,10 @@ class LoginActivity :AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.w("LoginActivity", "firebaseAuthWithGoogle 성공", task.exception)
                     toMainActivity(auth?.currentUser)
+                    /*val intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)
+                    finish()*/
+
                 } else {
                     Log.w("LoginActivity", "firebaseAuthWithGoogle 실패", task.exception)
                     //Snackbar.make(layout, "로그인에 실패하였습니다.", Snackbar.LENGTH_SHORT).show()
@@ -107,10 +170,13 @@ class LoginActivity :AppCompatActivity() {
             }
     }
 
+
     // signIn
     private fun signIn() {
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
+        val signInIntent = googleSignInClient
+            .signInIntent
+        //startActivityForResult(signInIntent, RC_SIGN_IN)
+        startActivity(signInIntent)
     }
 
     private fun signOut() { // 로그아웃
@@ -133,17 +199,6 @@ class LoginActivity :AppCompatActivity() {
 
 
 
-   /* private fun clickBtn() {
-        binding.btnLogin.setOnClickListener {
-            //startActivity(Intent(this,MainActivity::class.java))
-            BeginSignInRequest.builder().setGoogleIdTokenRequestOptions(
-                BeginSignInRequest.GoogleIdTokenRequestOptions.builder().setSupported(true)
-                    .setServerClientId(getString(R.string.web_client_id)).setFilterByAuthorizedAccounts(true)
-                    .build()
-            ).build()
-        }
-    }*/
-
 
 
     // toMainActivity
@@ -153,6 +208,22 @@ class LoginActivity :AppCompatActivity() {
             finish()
         }
     }
+
+    override fun onClick(p0: View?) {
+
+    }*/
+
+ // 첫번째 시도
+    /* private fun clickBtn() {
+     binding.btnLogin.setOnClickListener {
+         //startActivity(Intent(this,MainActivity::class.java))
+         BeginSignInRequest.builder().setGoogleIdTokenRequestOptions(
+             BeginSignInRequest.GoogleIdTokenRequestOptions.builder().setSupported(true)
+                 .setServerClientId(getString(R.string.web_client_id)).setFilterByAuthorizedAccounts(true)
+                 .build()
+         ).build()
+     }
+ }*/
 
 }
 

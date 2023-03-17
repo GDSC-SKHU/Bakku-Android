@@ -15,8 +15,10 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.bakku.databinding.ActivityMainBinding
 import com.example.bakku.fragments.RankFragment
+import com.example.bakku.presentation.LoginActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelectedListener*/ {
 
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelec
     //lateinit var navigationView : NavigationView
     //lateinit var drawerLayout : DrawerLayout
     lateinit var toolbar : androidx.appcompat.widget.Toolbar
+    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +36,8 @@ class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelec
         mBinding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(mBinding.root)
+
+        auth = FirebaseAuth.getInstance()
 
         // 네비게이션들을 담을 호스트
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.my_nav_host) as NavHostFragment
@@ -49,6 +54,19 @@ class MainActivity : AppCompatActivity()/*, NavigationView.OnNavigationItemSelec
        /* navigationView = findViewById(R.id.navigationView)
         navigationView.setNavigationItemSelectedListener(this)*/
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        // 사용자가 로그인되어 있는지 확인
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            // 로그인되어 있지 않은 경우 로그인 Activity로 이동
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     // 툴바 사용 설정
