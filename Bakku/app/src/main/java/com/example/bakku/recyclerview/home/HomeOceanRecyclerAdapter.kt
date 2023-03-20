@@ -6,18 +6,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bakku.R
 
 
-class HomeOceanRecyclerAdapter/*(homeOceanRecyclerviewInterface: HomeOceanRecyclerviewInterface)*/: RecyclerView.Adapter<HomeOceanViewHolder>() {
+class HomeOceanRecyclerAdapter(homeOceanRecyclerviewInterface: HomeOceanRecyclerviewInterface): RecyclerView.Adapter<HomeOceanViewHolder>() {
     private var modelList = ArrayList<HomeOceanModel>()
 
     private var homeOceanRecyclerviewInerface : HomeOceanRecyclerviewInterface? = null
 
-    /*init {
+    init {
         this.homeOceanRecyclerviewInerface = homeOceanRecyclerviewInterface
-    }*/
+    }
 
     //뷰 홀더가 생성 되었을 때
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeOceanViewHolder {
-        return HomeOceanViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_home_ocean_recycler_item,parent,false))
+        return HomeOceanViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_home_ocean_recycler_item,parent,false),this.homeOceanRecyclerviewInerface!!)
     }
 
     // 목록의 아이템 수

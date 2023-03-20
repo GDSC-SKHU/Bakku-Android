@@ -52,11 +52,7 @@
             </intent-filter>
 
         </activity>
-
-        <activity android:name=".presentation.EventActivity"
-            android:exported="true">
-
-        </activity>
+        
     </application>
 
 </manifest>

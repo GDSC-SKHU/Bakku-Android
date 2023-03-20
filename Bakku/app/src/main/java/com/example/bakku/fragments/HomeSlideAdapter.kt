@@ -18,8 +18,10 @@ class HomeSlideAdapter : FragmentStateAdapter {
             return HomeSlide1Fragment()
         else if (index == 1)
             return HomeSlide2Fragment()
-        else
+        else if(index == 2 )
             return HomeSlide3Fragment()
+        else
+            return HomeSlide4Fragment()
 
     }
 

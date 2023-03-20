@@ -17,17 +17,15 @@ import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.bakku.R
 import com.example.bakku.databinding.FragmentHomeBinding
 import com.example.bakku.presentation.EventActivity
-import com.example.bakku.recyclerview.home.HomeBakkuModel
-import com.example.bakku.recyclerview.home.HomeBakkuRecyclerAdapter
-import com.example.bakku.recyclerview.home.HomeOceanModel
-import com.example.bakku.recyclerview.home.HomeOceanRecyclerAdapter
+import com.example.bakku.recyclerview.home.*
 import com.example.bakku.recyclerview.mypage.MypageModel
 import com.example.bakku.recyclerview.mypage.MypageRecyclerAdapter
 
 import me.relex.circleindicator.CircleIndicator3
+import java.text.FieldPosition
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment() ,HomeOceanRecyclerviewInterface {
 
     //private var mBinding : FragmentHomeBinding? = null
 
@@ -114,7 +112,7 @@ class HomeFragment : Fragment() {
         }
 
         // 어탑터 인스턴스 생성
-        homeOceanRecyclerAdapter = HomeOceanRecyclerAdapter()
+        homeOceanRecyclerAdapter = HomeOceanRecyclerAdapter(this)
         homeOceanRecyclerAdapter.submitList(this.modelList1)
 
         // 리사이클러뷰 설정
@@ -147,6 +145,15 @@ class HomeFragment : Fragment() {
 
 
         return v
+    }
+
+    override fun onItemClicked(position: Int) {
+        val fragment = OceanDetailFragment()
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.homeFragment,fragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 
 }

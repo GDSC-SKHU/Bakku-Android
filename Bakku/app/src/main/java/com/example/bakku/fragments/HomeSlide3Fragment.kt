@@ -23,7 +23,12 @@ class HomeSlide3Fragment : Fragment() {
 
         frameLayout3 = v.findViewById(R.id.frameLayout3)
         frameLayout3.setOnClickListener{
-            Toast.makeText(context,"clicked", Toast.LENGTH_SHORT).show()
+            val fragment = EventFragment()
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.homeFragment,fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         }
 
         //return mBinding?.root

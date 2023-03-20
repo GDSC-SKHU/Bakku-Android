@@ -5,24 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.bakku.R
-import com.example.bakku.databinding.FragmentHomeSlide2Binding
 
-class HomeSlide2Fragment : Fragment() {
-    private var mBinding : FragmentHomeSlide2Binding? = null
-    lateinit var frameLayout2 : FrameLayout
+class HomeSlide4Fragment : Fragment() {
+
+    lateinit var frameLayout4 : FrameLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val v : View = inflater.inflate(com.example.bakku.R.layout.fragment_home_slide2,container,false)
+        val v : View = inflater.inflate(com.example.bakku.R.layout.fragment_home_slide4,container,false)
 
-        frameLayout2 = v.findViewById<FrameLayout>(R.id.frameLayout2)
-        frameLayout2.setOnClickListener{
+        frameLayout4 = v.findViewById(R.id.frameLayout4)
+        frameLayout4.setOnClickListener{
             val fragment = EventFragment()
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
@@ -31,7 +29,6 @@ class HomeSlide2Fragment : Fragment() {
             fragmentTransaction.commit()
         }
 
-        //return mBinding?.root
         return v
     }
 }
