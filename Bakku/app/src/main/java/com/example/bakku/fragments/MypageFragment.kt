@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -60,7 +62,7 @@ class MypageFragment : Fragment() {
 
         // 10번 반복
         for(i in 1 .. 10){
-            var mypageModel = MypageModel(name = "성공회대학교", oceanImage = "https://news.samsungdisplay.com/wp-content/uploads/2022/05/IT_twi001t1345955-1-1024x639.jpg", date = "2023-03-12", weight = "10kg")
+            var mypageModel = MypageModel(name = "성공회대학교", oceanImage = "https://news.samsungdisplay.com/wp-content/uploads/2022/05/IT_twi001t1345955-1-1024x639.Npg", date = "2023-03-12", weight = "10kg")
             this.modelList.add(mypageModel)
         }
 
@@ -76,6 +78,26 @@ class MypageFragment : Fragment() {
             // 어답터 장착
             adapter = mypageRecyclerAdapter
         }
+
+        fun setImage() {
+            val imageView: ImageView = view.findViewById(R.id.iv_mypage)
+            imageView.setImageURI(auth.currentUser?.photoUrl)
+        }
+
+        fun setName() {
+            val nameText: TextView = view.findViewById(R.id.tv_mypage_name)
+            val userName = auth.currentUser?.displayName
+            nameText.setText("반가워요, ${userName}님!")
+        }
+
+        fun setEmail() {
+            var  emailText: TextView = view.findViewById(R.id.tv_mypage_email)
+            emailText.setText(auth.currentUser?.email)
+        }
+
+        setImage()
+        setEmail()
+        setName()
 
         return view
     }
