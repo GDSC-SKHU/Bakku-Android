@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -51,29 +53,27 @@ class HomeFragment : Fragment(), HomeOceanRecyclerviewInterface {
     private lateinit var homeBakkuRecyclerAdapter: HomeBakkuRecyclerAdapter
     private lateinit var home_bakku_recycler_view: RecyclerView
 
-    //    val eventService = retrofit.create(EventService::class.java)
+    // data from api
+    private var events : MutableLiveData<ArrayList<EventResponse>> = MutableLiveData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val eventService = RetrofitClient.retrofit.create(EventService::class.java)
 
-
-        Log.d("hyesung", "on create")
-
         eventService.getEvents().enqueue(object : Callback<Paging<EventResponse>> {
             override fun onResponse(
                 call: Call<Paging<EventResponse>>, response: Response<Paging<EventResponse>>
             ) {
                 if (response.isSuccessful()) {
-                    Log.d("hyesung-suc", response.headers().toString())
+                    events.value = response.body()!!.content
                 }
 
-                Log.d("hyesung-suc-fail", response.toString())
+                TODO("여기에 에러 핸들링 하세요")
             }
 
             override fun onFailure(call: Call<Paging<EventResponse>>, t: Throwable) {
-                Log.d("hyesung-fail", t.toString())
+                TODO("여기에 에러 핸들링 하세요")
 0            }
         })
 
@@ -86,6 +86,9 @@ class HomeFragment : Fragment(), HomeOceanRecyclerviewInterface {
         val v: View = inflater.inflate(R.layout.fragment_home, container, false)
 
 
+//        events.observe((){}, (){
+//
+//        })
 
         //ViewPager2
         mPager = v.findViewById(R.id.viewpager)
