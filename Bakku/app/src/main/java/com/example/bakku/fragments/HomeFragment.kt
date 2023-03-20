@@ -16,7 +16,7 @@ import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.bakku.R
 import com.example.bakku.databinding.FragmentHomeBinding
-import com.example.bakku.presentation.EventActivity
+
 import com.example.bakku.recyclerview.home.*
 import com.example.bakku.recyclerview.mypage.MypageModel
 import com.example.bakku.recyclerview.mypage.MypageRecyclerAdapter

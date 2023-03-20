@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.bakku.databinding.FragmentHomeSlide1Binding
-import com.example.bakku.presentation.EventActivity
 
 
 class HomeSlide1Fragment : Fragment() {

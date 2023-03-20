@@ -1,15 +1,24 @@
 package com.example.bakku.fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bakku.R
+import com.example.bakku.presentation.LoginActivity
 import com.example.bakku.recyclerview.mypage.MypageModel
 import com.example.bakku.recyclerview.mypage.MypageRecyclerAdapter
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 
 class MypageFragment : Fragment() {
 
@@ -19,12 +28,35 @@ class MypageFragment : Fragment() {
     private lateinit var mypageRecyclerAdapter: MypageRecyclerAdapter
     private lateinit var my_recycler_view : RecyclerView
 
+    private lateinit var auth: FirebaseAuth
+    private lateinit var googleSignInClient: GoogleSignInClient
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_mypage , container, false)
+
+        auth = FirebaseAuth.getInstance()
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this.requireContext(), gso)
+
+        val logoutBtn = view.findViewById<Button>(R.id.mypage_logout)
+        logoutBtn.setOnClickListener{
+            auth.signOut()
+
+            // Google sign out
+            googleSignInClient.signOut().addOnCompleteListener() {
+                //view.findNavController().navigate(R.id.activity_login)
+                var intent = Intent(requireActivity(), LoginActivity::class.java)
+                startActivity(intent)
+            }
+        }
 
         // 10번 반복
         for(i in 1 .. 10){
