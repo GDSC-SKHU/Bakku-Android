@@ -4,6 +4,7 @@ package com.example.bakku.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,24 +16,28 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.bakku.R
-import com.example.bakku.databinding.FragmentHomeBinding
+import com.example.bakku.data.remote.RetrofitClient
+import com.example.bakku.data.remote.api.EventService
+import com.example.bakku.data.remote.response.EventResponse
+import com.example.bakku.data.remote.response.Paging
 
 import com.example.bakku.recyclerview.home.*
-import com.example.bakku.recyclerview.mypage.MypageModel
-import com.example.bakku.recyclerview.mypage.MypageRecyclerAdapter
+
 
 import me.relex.circleindicator.CircleIndicator3
-import java.text.FieldPosition
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
-class HomeFragment : Fragment() ,HomeOceanRecyclerviewInterface {
+class HomeFragment : Fragment(), HomeOceanRecyclerviewInterface {
 
     //private var mBinding : FragmentHomeBinding? = null
 
     //slide view here
-    private lateinit var mPager : ViewPager2
+    private lateinit var mPager: ViewPager2
     private lateinit var pagerAdapter: FragmentStateAdapter
-    private var num_page : Int = 4
+    private var num_page: Int = 4
     private lateinit var mIndicator: CircleIndicator3
 
     //recycler view
@@ -41,21 +46,45 @@ class HomeFragment : Fragment() ,HomeOceanRecyclerviewInterface {
     var modelList2 = ArrayList<HomeBakkuModel>()
 
     private lateinit var homeOceanRecyclerAdapter: HomeOceanRecyclerAdapter
-    private lateinit var home_ocean_recycler_view : RecyclerView
+    private lateinit var home_ocean_recycler_view: RecyclerView
 
     private lateinit var homeBakkuRecyclerAdapter: HomeBakkuRecyclerAdapter
-    private lateinit var home_bakku_recycler_view : RecyclerView
+    private lateinit var home_bakku_recycler_view: RecyclerView
+
+    //    val eventService = retrofit.create(EventService::class.java)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val eventService = RetrofitClient.retrofit.create(EventService::class.java)
 
 
+        Log.d("hyesung", "on create")
+
+        eventService.getEvents().enqueue(object : Callback<Paging<EventResponse>> {
+            override fun onResponse(
+                call: Call<Paging<EventResponse>>, response: Response<Paging<EventResponse>>
+            ) {
+                if (response.isSuccessful()) {
+                    Log.d("hyesung-suc", response.headers().toString())
+                }
+
+                Log.d("hyesung-suc-fail", response.toString())
+            }
+
+            override fun onFailure(call: Call<Paging<EventResponse>>, t: Throwable) {
+                Log.d("hyesung-fail", t.toString())
+0            }
+        })
+
+    }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-
         // fragment에서 findViewById 사용 (viewpager 부분)
-        val v : View = inflater.inflate(R.layout.fragment_home,container,false)
+        val v: View = inflater.inflate(R.layout.fragment_home, container, false)
+
 
 
         //ViewPager2
@@ -74,9 +103,7 @@ class HomeFragment : Fragment() ,HomeOceanRecyclerviewInterface {
 
         mPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
+                position: Int, positionOffset: Float, positionOffsetPixels: Int
             ) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                 if (positionOffsetPixels == 0) {
@@ -106,8 +133,12 @@ class HomeFragment : Fragment() ,HomeOceanRecyclerviewInterface {
         }
 
         // 10번 반복
-        for(i in 1 .. 10){
-            var homeOceanModel = HomeOceanModel(sea = "을왕리 해수욕장", location = "을왕리", oceanImg = "https://news.samsungdisplay.com/wp-content/uploads/2022/05/IT_twi001t1345955-1-1024x639.jpg")
+        for (i in 1..10) {
+            var homeOceanModel = HomeOceanModel(
+                sea = "을왕리 해수욕장",
+                location = "을왕리",
+                oceanImg = "https://news.samsungdisplay.com/wp-content/uploads/2022/05/IT_twi001t1345955-1-1024x639.jpg"
+            )
             this.modelList1.add(homeOceanModel)
         }
 
@@ -117,16 +148,22 @@ class HomeFragment : Fragment() ,HomeOceanRecyclerviewInterface {
 
         // 리사이클러뷰 설정
         home_ocean_recycler_view = v.findViewById(R.id.home_sea_recycler_view)
-        home_ocean_recycler_view.apply{
+        home_ocean_recycler_view.apply {
             // 리사이클러뷰 방향 등 설정
-            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             // 어답터 장착
             adapter = homeOceanRecyclerAdapter
         }
 
         // 10번 반복
-        for(i in 1 .. 10){
-            var homeBakkuModel = HomeBakkuModel(name = "성공회대학교", oceanImage = "https://news.samsungdisplay.com/wp-content/uploads/2022/05/IT_twi001t1345955-1-1024x639.jpg", date = "2023-03-12", weight = "10kg")
+        for (i in 1..10) {
+            var homeBakkuModel = HomeBakkuModel(
+                name = "성공회대학교",
+                oceanImage = "https://news.samsungdisplay.com/wp-content/uploads/2022/05/IT_twi001t1345955-1-1024x639.jpg",
+                date = "2023-03-12",
+                weight = "10kg"
+            )
             this.modelList2.add(homeBakkuModel)
         }
 
@@ -136,9 +173,10 @@ class HomeFragment : Fragment() ,HomeOceanRecyclerviewInterface {
 
         // 리사이클러뷰 설정
         home_bakku_recycler_view = v.findViewById(R.id.home_bakku_recycler_view)
-        home_bakku_recycler_view.apply{
+        home_bakku_recycler_view.apply {
             // 리사이클러뷰 방향 등 설정
-            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             // 어답터 장착
             adapter = homeBakkuRecyclerAdapter
         }
@@ -151,7 +189,7 @@ class HomeFragment : Fragment() ,HomeOceanRecyclerviewInterface {
         val fragment = OceanDetailFragment()
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.homeFragment,fragment)
+        fragmentTransaction.replace(R.id.homeFragment, fragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
