@@ -17,6 +17,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -24,10 +30,13 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 
-class LoginActivity :AppCompatActivity() {
+class LoginActivity :AppCompatActivity(),OnMapReadyCallback {
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 99
+
+    //구글맵
+    lateinit var mapView: MapView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +55,12 @@ class LoginActivity :AppCompatActivity() {
         btnGoogleSignIn.setOnClickListener {
             signInWithGoogle()
         }
+
+        //구글맵
+        mapView = findViewById(R.id.mv_login)
+        mapView.onCreate(savedInstanceState)
+        mapView.getMapAsync(this)
+
     }
 
     private fun signInWithGoogle() {
@@ -80,6 +95,37 @@ class LoginActivity :AppCompatActivity() {
                     Log.e(TAG, "Google sign in failed", task.exception)
                 }
             }
+    }
+
+    //구글맵
+    override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mapView.onDestroy()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        // 맵이 준비되면 실행되는 콜백
+        googleMap.addMarker(
+            MarkerOptions()
+                .position(LatLng(37.566535, 126.977969))
+                .title("서울 시청")
+        )
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(37.566535, 126.977969), 15f))
     }
 
     //두번째 시도
@@ -213,7 +259,7 @@ class LoginActivity :AppCompatActivity() {
 
     }*/
 
- // 첫번째 시도
+    // 첫번째 시도
     /* private fun clickBtn() {
      binding.btnLogin.setOnClickListener {
          //startActivity(Intent(this,MainActivity::class.java))
@@ -226,4 +272,3 @@ class LoginActivity :AppCompatActivity() {
  }*/
 
 }
-
