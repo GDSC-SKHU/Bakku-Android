@@ -8,6 +8,13 @@
     <!-- Gallery Permission -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    
+    <!--Google Map -->
+    <uses-feature android:required="true" android:glEsVersion="0x00020000"/>
+    <permission android:name="com.cookandroid.cookmap.permission.MAPS_RECEIVE"
+        android:label="signature"></permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    
 
     <!--위치 측정-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
