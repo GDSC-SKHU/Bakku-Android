@@ -68,8 +68,8 @@ class HomeFragment : Fragment(), HomeOceanRecyclerviewInterface {
                 if (response.isSuccessful()) {
                     events.value = response.body()!!.content
                 }
+                //TODO("여기에 에러 핸들링 하세요")
 
-                TODO("여기에 에러 핸들링 하세요")
             }
 
             override fun onFailure(call: Call<Paging<EventResponse>>, t: Throwable) {

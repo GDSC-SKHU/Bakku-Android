@@ -4,14 +4,11 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
-import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bakku.MainActivity
 import com.example.bakku.R
-import com.example.bakku.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -24,19 +21,14 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 
-class LoginActivity :AppCompatActivity(),OnMapReadyCallback {
+
+class LoginActivity :AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 99
-
-    //구글맵
-    lateinit var mapView: MapView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,11 +47,6 @@ class LoginActivity :AppCompatActivity(),OnMapReadyCallback {
         btnGoogleSignIn.setOnClickListener {
             signInWithGoogle()
         }
-
-        //구글맵
-        mapView = findViewById(R.id.mv_login)
-        mapView.onCreate(savedInstanceState)
-        mapView.getMapAsync(this)
 
     }
 
@@ -97,36 +84,6 @@ class LoginActivity :AppCompatActivity(),OnMapReadyCallback {
             }
     }
 
-    //구글맵
-    override fun onResume() {
-        super.onResume()
-        mapView.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        mapView.onPause()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        mapView.onDestroy()
-    }
-
-    override fun onLowMemory() {
-        super.onLowMemory()
-        mapView.onLowMemory()
-    }
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        // 맵이 준비되면 실행되는 콜백
-        googleMap.addMarker(
-            MarkerOptions()
-                .position(LatLng(37.566535, 126.977969))
-                .title("서울 시청")
-        )
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(37.566535, 126.977969), 15f))
-    }
 
     //두번째 시도
 
