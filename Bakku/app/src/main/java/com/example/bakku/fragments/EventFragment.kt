@@ -58,9 +58,9 @@ class EventFragment: Fragment(), OnMapReadyCallback {
         // 맵이 준비되면 실행되는 콜백
         googleMap.addMarker(
             MarkerOptions()
-                .position(LatLng(37.566535, 126.977969))
-                .title("서울 시청")
+                .position(LatLng(38.1987, 128.5729))
+                .title("속초 해수욕장")
         )
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(37.566535, 126.977969), 15f))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(38.1987, 128.5729), 15f))
     }
 }

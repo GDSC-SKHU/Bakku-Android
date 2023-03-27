@@ -1,64 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ImageView
-        android:id="@+id/iv_ocean"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@drawable/rectangle_round_10"
-        android:backgroundTint="@color/gray"
-        android:layout_margin="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_ocean_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_ocean"
-        android:theme="@style/B15"
-        android:layout_margin="15dp"
-        android:text="@string/ocean_name"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_ocean_location"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ocean_name"
-        android:theme="@style/B15"
-        android:layout_margin="15dp"
-        android:text="@string/ocean_location"/>
 
-
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mv_ocean"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ocean_location"
-        android:apiKey="AIzaSyDQKKCwR_wt-bXvac4h7ud4o8ntbMtDIFU"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mv_ocean">
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/iv_ocean"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/rectangle_round_10"
+            android:backgroundTint="@color/gray"
+            android:layout_margin="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ocean_bakkus"
-            android:theme="@style/B15"/>
-        <ScrollView
+            android:id="@+id/tv_ocean_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_ocean"
+            android:theme="@style/B15"
+            android:layout_margin="15dp"
+            android:text="@string/ocean_name"/>
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_ocean_location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ocean_name"
+            android:theme="@style/B15"
+            android:layout_margin="15dp"
+            android:text="@string/ocean_location"/>
 
-        </ScrollView>
-    </LinearLayout>
 
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mv_ocean"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ocean_location"
+            android:apiKey="AIzaSyDQKKCwR_wt-bXvac4h7ud4o8ntbMtDIFU"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mv_ocean">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ocean_bakkus"
+                android:theme="@style/B15"/>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </ScrollView>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

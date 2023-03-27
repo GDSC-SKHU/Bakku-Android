@@ -30,13 +30,20 @@
 
     </FrameLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="바꾸할 해수욕장을 찾아보세요"
+        android:layout_below="@+id/home_slide_view"
+        android:theme="@style/B15"/>
+
 
 
     <!--리사이클러뷰 : 바다 리스트 (거리 가까운순) -->
     <LinearLayout
         android:id="@+id/home_sea_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="270dp"
         android:layout_below="@+id/home_slide_view"
         android:padding="10dp"
         android:layout_marginTop="20dp">
@@ -55,19 +62,28 @@
         </ScrollView>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="바꾸한 바꾸들을 소개합니다"
+        android:layout_below="@+id/home_sea_scroll_view"
+        android:theme="@style/B15"/>
+
     <!--바꾸들 -->
     <LinearLayout
         android:id="@+id/home_team_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="200dp"
         android:layout_marginTop="20dp"
         android:padding="10dp"
         android:layout_below="@+id/home_sea_scroll_view">
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:backgroundTint="@color/gray">
+            android:backgroundTint="@color/gray"
+            android:orientation="vertical">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/home_bakku_recycler_view"
                 android:layout_width="match_parent"
@@ -75,8 +91,7 @@
                 android:background="@color/gray"
                 android:paddingRight="20dp"
                 android:paddingBottom="8dp"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                />
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
         </ScrollView>
     </LinearLayout>
 

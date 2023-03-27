@@ -13,22 +13,14 @@
 
         <ImageView
             android:id="@+id/imgBanner2"
+            android:src="@drawable/event2"
+            android:scaleType="fitXY"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/blue_500"
             android:contentDescription="@string/app_name"/>
 
-        <TextView
-            android:id="@+id/tvName2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_centerInParent="true"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="홍보 페이지 2"/>
+
 
     </FrameLayout>
 
