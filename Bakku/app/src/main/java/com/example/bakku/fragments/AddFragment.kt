@@ -21,8 +21,8 @@ import com.example.bakku.databinding.FragmentAddBinding
 class AddFragment : Fragment() {
 
     private lateinit var spinner: Spinner
-    private lateinit var btn_before : AppCompatButton
-    private lateinit var btn_after : AppCompatButton
+    //private lateinit var btn_before : AppCompatButton
+    //private lateinit var btn_after : AppCompatButton
 
     private var mBinding : FragmentAddBinding? = null
     override fun onCreateView(
@@ -48,8 +48,8 @@ class AddFragment : Fragment() {
         }
 
         // 사진 업로드
-        btn_before = v.findViewById(R.id.btn_add_before)
-        btn_before = v.findViewById(R.id.btn_add_after)
+        /*btn_before = v.findViewById(R.id.btn_add_before)
+        btn_before = v.findViewById(R.id.btn_add_after)*/
 
         return v
     }

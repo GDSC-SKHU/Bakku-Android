@@ -23,7 +23,7 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_event"
         android:theme="@style/B15"
         android:layout_margin="15dp"
-        android:text="행사명 : 쓰레기가 과자가 되는 과자 상점"/>
+        android:text="@string/event_name"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_event_name"
         android:theme="@style/B15"
         android:layout_margin="15dp"
-        android:text="행사기간 : 2023/05/26 ~ 2023/05/30"/>
+        android:text="@string/event_date"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_event_date"
         android:theme="@style/B15"
         android:layout_margin="15dp"
-        android:text="행사 설명 : 참여자는 씨낵트럭에 방문해 청소도구를 대여받아 해수욕장에서 쓰레기를 수거해 가져가면 무게에 따라 바다 과자 환전 기준에 맞춰 바다과자로 교환 가능하며, 본인이 가져온 다회용 용기에 가져갈 수 있다. "/>
+        android:text="@string/event_describe"/>
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/mv_event"

@@ -66,6 +66,7 @@ class HomeFragment : Fragment(), HomeOceanRecyclerviewInterface {
                 call: Call<Paging<EventResponse>>, response: Response<Paging<EventResponse>>
             ) {
                 if (response.isSuccessful()) {
+
                     events.value = response.body()!!.content
                 }
                 //TODO("여기에 에러 핸들링 하세요")
@@ -86,54 +87,55 @@ class HomeFragment : Fragment(), HomeOceanRecyclerviewInterface {
         val v: View = inflater.inflate(R.layout.fragment_home, container, false)
 
 
-//        events.observe((){}, (){
-//
-//        })
+        // when events observed, set up viewpager
+        events.observe(viewLifecycleOwner, Observer {
 
-        //ViewPager2
-        mPager = v.findViewById(R.id.viewpager)
-        //Adapter
-        pagerAdapter = HomeSlideAdapter(this, num_page)
-        mPager.adapter = pagerAdapter
-        //Indicator
-        mIndicator = v.findViewById(R.id.indicator)
-        mIndicator.setViewPager(mPager)
-        mIndicator.createIndicators(num_page, 0)
-        //ViewPager Setting
-        mPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        mPager.currentItem = 1000
-        mPager.offscreenPageLimit = 3
+            //ViewPager2
+            mPager = v.findViewById(R.id.viewpager)
+            //Adapter
+            pagerAdapter = HomeSlideAdapter(this, num_page, it)
+            mPager.adapter = pagerAdapter
+            //Indicator
+            mIndicator = v.findViewById(R.id.indicator)
+            mIndicator.setViewPager(mPager)
+            mIndicator.createIndicators(num_page, 0)
+            //ViewPager Setting
+            mPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            mPager.currentItem = 1000
+            mPager.offscreenPageLimit = 3
 
-        mPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
-            override fun onPageScrolled(
-                position: Int, positionOffset: Float, positionOffsetPixels: Int
-            ) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                if (positionOffsetPixels == 0) {
-                    mPager.currentItem = position
+            mPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+                override fun onPageScrolled(
+                    position: Int, positionOffset: Float, positionOffsetPixels: Int
+                ) {
+                    super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                    if (positionOffsetPixels == 0) {
+                        mPager.currentItem = position
+                    }
                 }
-            }
 
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                mIndicator.animatePageSelected(position % num_page)
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    mIndicator.animatePageSelected(position % num_page)
+                }
+            })
+            val pageMargin = resources.getDimensionPixelOffset(R.dimen.pageMargin).toFloat()
+            val pageOffset = resources.getDimensionPixelOffset(R.dimen.offset).toFloat()
+
+            mPager.setPageTransformer { page, position ->
+                val myOffset = position * -(2 * pageOffset + pageMargin)
+                if (mPager.orientation == ViewPager2.ORIENTATION_HORIZONTAL) {
+                    if (ViewCompat.getLayoutDirection(mPager) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+                        page.translationX = -myOffset
+                    } else {
+                        page.translationX = myOffset
+                    }
+                } else {
+                    page.translationY = myOffset
+                }
             }
         })
-        val pageMargin = resources.getDimensionPixelOffset(R.dimen.pageMargin).toFloat()
-        val pageOffset = resources.getDimensionPixelOffset(R.dimen.offset).toFloat()
 
-        mPager.setPageTransformer { page, position ->
-            val myOffset = position * -(2 * pageOffset + pageMargin)
-            if (mPager.orientation == ViewPager2.ORIENTATION_HORIZONTAL) {
-                if (ViewCompat.getLayoutDirection(mPager) == ViewCompat.LAYOUT_DIRECTION_RTL) {
-                    page.translationX = -myOffset
-                } else {
-                    page.translationX = myOffset
-                }
-            } else {
-                page.translationY = myOffset
-            }
-        }
 
         // 10번 반복
         for (i in 1..10) {
