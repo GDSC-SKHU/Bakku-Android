@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.bakku.R
 import com.example.bakku.data.remote.response.EventResponse
+import com.example.bakku.utils.ImageTransformer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -29,23 +30,12 @@ class HomeSlide1Fragment : Fragment {
 
     //private var mBinding : FragmentHomeSlide1Binding? = null
     lateinit var frameLayout1 : FrameLayout
-    lateinit var mEvent : EventResponse
-//
+    var mEvent : EventResponse
+
     constructor(event: EventResponse) : super() {
         mEvent = event
         Log.d("HomeSlide1Fragment", mEvent.imageUrl?.let { Uri.parse(it) }.toString())
     }
-    private suspend fun getImageBitmapFromUrl(url: String): Bitmap? = withContext(Dispatchers.IO) {
-        try {
-            val inputStream = URL(url).openStream()
-            BitmapFactory.decodeStream(inputStream)
-        } catch (e: Exception) {
-            Log.e("Error", e.message!!)
-            e.printStackTrace()
-            null
-        }
-    }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +48,7 @@ class HomeSlide1Fragment : Fragment {
         val imageView = v.findViewById<ImageView>(R.id.imgBanner1)
 
         lifecycleScope.launch(Dispatchers.IO) {
-            val bitmap = getImageBitmapFromUrl(mEvent.imageUrl)
+            val bitmap = ImageTransformer.getImageBitmapFromUrl(mEvent.imageUrl)
             withContext(Dispatchers.Main) {
                 imageView.setImageBitmap(bitmap)
             }
@@ -67,7 +57,7 @@ class HomeSlide1Fragment : Fragment {
         frameLayout1 = v.findViewById(R.id.frameLayout1)
         frameLayout1.setOnClickListener{
 
-            val fragment = EventFragment()
+            val fragment = EventFragment(mEvent)
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.homeFragment,fragment)
