@@ -2,12 +2,21 @@ package com.example.bakku.fragments
 
 //import com.example.bakku.fragments.ViewPagerAdapter
 
+import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.getSystemService
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
@@ -20,7 +29,9 @@ import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.bakku.R
 import com.example.bakku.data.remote.RetrofitClient
 import com.example.bakku.data.remote.api.EventService
+import com.example.bakku.data.remote.api.OceanService
 import com.example.bakku.data.remote.response.EventResponse
+import com.example.bakku.data.remote.response.OceanResponse
 import com.example.bakku.data.remote.response.Paging
 
 import com.example.bakku.recyclerview.home.*
@@ -33,7 +44,7 @@ import retrofit2.Response
 
 
 class HomeFragment : Fragment(), HomeOceanRecyclerviewInterface {
-
+    private lateinit var locationManager: LocationManager
     //private var mBinding : FragmentHomeBinding? = null
 
     //slide view here
@@ -54,7 +65,9 @@ class HomeFragment : Fragment(), HomeOceanRecyclerviewInterface {
     private lateinit var home_bakku_recycler_view: RecyclerView
 
     // data from api
-    private var events : MutableLiveData<ArrayList<EventResponse>> = MutableLiveData()
+    private var events: MutableLiveData<ArrayList<EventResponse>> = MutableLiveData()
+    private var oceans: MutableLiveData<ArrayList<OceanResponse>> = MutableLiveData()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,9 +88,64 @@ class HomeFragment : Fragment(), HomeOceanRecyclerviewInterface {
 
             override fun onFailure(call: Call<Paging<EventResponse>>, t: Throwable) {
                 TODO("여기에 에러 핸들링 하세요")
-0            }
+            }
         })
 
+        val oceanService = RetrofitClient.retrofit.create(OceanService::class.java)
+
+
+        val locationListener = object : LocationListener {
+            override fun onLocationChanged(location: Location) {
+                // 위치 정보 가져오기 성공 시 처리
+                val latitude = location.latitude
+                val longitude = location.longitude
+
+                Log.d("Ocean", location.toString())
+
+                oceanService.getOceans(latitude, longitude)
+                    .enqueue(object : Callback<Paging<OceanResponse>> {
+                        override fun onResponse(
+                            call: Call<Paging<OceanResponse>>,
+                            response: Response<Paging<OceanResponse>>
+                        ) {
+                            if (response.isSuccessful()) {
+                                oceans.value = response.body()!!.content
+                            }
+                            //TODO("여기에 에러 핸들링 하세요")
+                        }
+
+                        override fun onFailure(call: Call<Paging<OceanResponse>>, t: Throwable) {
+                            TODO("Not yet implemented")
+                        }
+                    })
+
+            }
+
+            override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
+        }
+
+        val locationManager =
+            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(), Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                1
+            )
+        } else {
+            locationManager.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER,
+                1000 * 60 * 60 * 24,
+                1000f,
+                locationListener
+            )
+        }
     }
 
     override fun onCreateView(
@@ -137,29 +205,30 @@ class HomeFragment : Fragment(), HomeOceanRecyclerviewInterface {
         })
 
 
-        // 10번 반복
-        for (i in 1..10) {
-            var homeOceanModel = HomeOceanModel(
-                sea = "을왕리 해수욕장",
-                location = "을왕리",
-                oceanImg = "https://news.samsungdisplay.com/wp-content/uploads/2022/05/IT_twi001t1345955-1-1024x639.jpg"
-            )
-            this.modelList1.add(homeOceanModel)
-        }
+        oceans.observe(viewLifecycleOwner, Observer {
+            for (ocean in it) {
+                this.modelList1.add(HomeOceanModel(
+                    sea = ocean.name,
+                    location = ocean.address,
+                    oceanImg = ocean.imageUrl
+                ))
+            }
 
-        // 어탑터 인스턴스 생성
-        homeOceanRecyclerAdapter = HomeOceanRecyclerAdapter(this)
-        homeOceanRecyclerAdapter.submitList(this.modelList1)
+            // 어탑터 인스턴스 생성
+            homeOceanRecyclerAdapter = HomeOceanRecyclerAdapter(this)
+            homeOceanRecyclerAdapter.submitList(this.modelList1)
 
-        // 리사이클러뷰 설정
-        home_ocean_recycler_view = v.findViewById(R.id.home_sea_recycler_view)
-        home_ocean_recycler_view.apply {
-            // 리사이클러뷰 방향 등 설정
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            // 어답터 장착
-            adapter = homeOceanRecyclerAdapter
-        }
+            // 리사이클러뷰 설정
+            home_ocean_recycler_view = v.findViewById(R.id.home_sea_recycler_view)
+            home_ocean_recycler_view.apply {
+                // 리사이클러뷰 방향 등 설정
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                // 어답터 장착
+                adapter = homeOceanRecyclerAdapter
+            }
+        })
+
 
         // 10번 반복
         for (i in 1..10) {

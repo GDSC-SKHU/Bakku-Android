@@ -6,7 +6,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 
-public interface EventService {
+interface EventService {
     @GET("events")
     fun getEvents(): Call<Paging<EventResponse>>
 }
