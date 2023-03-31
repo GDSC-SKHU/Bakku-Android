@@ -1,56 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ImageView
-        android:id="@+id/iv_event"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/rectangle_round_10"
-        android:backgroundTint="@color/gray"
-        android:layout_margin="15dp"
-        android:src="@drawable/event"
-        android:scaleType="fitXY"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_event_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_event"
-        android:theme="@style/B15"
-        android:layout_margin="15dp"
-        android:text="@string/event_name"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_event_date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_event_name"
-        android:theme="@style/B15"
-        android:layout_margin="15dp"
-        android:text="@string/event_date"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_event_describe"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_event_date"
-        android:theme="@style/B15"
-        android:layout_margin="15dp"
-        android:text="@string/event_describe"/>
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/iv_event"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/rectangle_round_10"
+            android:backgroundTint="@color/gray"
+            android:layout_margin="15dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_event_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_event"
+            android:theme="@style/B15"
+            android:layout_margin="15dp"
+            android:text="@string/event_name"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_event_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_event_name"
+            android:theme="@style/B15"
+            android:layout_margin="15dp"
+            android:text="@string/event_date"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_event_describe"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_event_date"
+            android:theme="@style/B15"
+            android:layout_margin="15dp"
+            android:text="@string/event_describe"/>
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mv_event"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_event_describe"
-        android:apiKey="AIzaSyDQKKCwR_wt-bXvac4h7ud4o8ntbMtDIFU"/>
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mv_event"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_event_describe"
+            android:apiKey="AIzaSyDQKKCwR_wt-bXvac4h7ud4o8ntbMtDIFU"/>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

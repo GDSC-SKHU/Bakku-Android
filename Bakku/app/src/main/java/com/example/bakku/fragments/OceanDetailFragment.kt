@@ -5,7 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.bakku.R
+import com.example.bakku.recyclerview.bakkudetail.BakkuDetailModel
+import com.example.bakku.recyclerview.bakkudetail.BakkuDetailRecyclerAdapter
+import com.example.bakku.recyclerview.home.HomeBakkuModel
+import com.example.bakku.recyclerview.home.HomeBakkuRecyclerAdapter
+import com.example.bakku.recyclerview.home.HomeOceanRecyclerAdapter
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -17,6 +24,10 @@ class OceanDetailFragment:Fragment(), OnMapReadyCallback {
 
     //구글맵
     lateinit var mapView: MapView
+    var modelList = ArrayList<BakkuDetailModel>()
+
+    private lateinit var bakkuDetailRecyclerAdapter: BakkuDetailRecyclerAdapter
+    private lateinit var bakku_detail_recycler_view: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +40,32 @@ class OceanDetailFragment:Fragment(), OnMapReadyCallback {
         mapView = v.findViewById(R.id.mv_ocean)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
+
+        //리사이클러뷰
+        // 10번 반복
+        for (i in 1..10) {
+            var bakkuDetailModel = BakkuDetailModel(
+                name = "성공회대학교",
+                oceanImage = "https://news.samsungdisplay.com/wp-content/uploads/2022/05/IT_twi001t1345955-1-1024x639.jpg",
+                date = "2023-03-12",
+                weight = "10kg"
+            )
+            this.modelList.add(bakkuDetailModel)
+        }
+
+        // 어탑터 인스턴스 생성
+        bakkuDetailRecyclerAdapter = BakkuDetailRecyclerAdapter()
+        bakkuDetailRecyclerAdapter.submitList(this.modelList)
+
+        // 리사이클러뷰 설정
+        bakku_detail_recycler_view = v.findViewById(R.id.bakku_detail_recycler_view)
+        bakku_detail_recycler_view.apply {
+            // 리사이클러뷰 방향 등 설정
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            // 어답터 장착
+            adapter = bakkuDetailRecyclerAdapter
+        }
 
         return v
     }

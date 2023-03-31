@@ -60,7 +60,14 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/bakku_detail_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/gray"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="8dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
             </ScrollView>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

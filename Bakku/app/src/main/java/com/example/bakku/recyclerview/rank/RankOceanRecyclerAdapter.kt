@@ -17,7 +17,7 @@ class RankOceanRecyclerAdapter: RecyclerView.Adapter<RankOceanViewHolder>() {
 
     // 목록의 아이템 수
     override fun getItemCount(): Int {
-        return 10
+        return modelList.size
     }
 
     // 아이템 추가

@@ -28,8 +28,10 @@ import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.bakku.R
 import com.example.bakku.data.remote.RetrofitClient
+import com.example.bakku.data.remote.api.BakkuService
 import com.example.bakku.data.remote.api.EventService
 import com.example.bakku.data.remote.api.OceanService
+import com.example.bakku.data.remote.response.BakkuResponse
 import com.example.bakku.data.remote.response.EventResponse
 import com.example.bakku.data.remote.response.OceanResponse
 import com.example.bakku.data.remote.response.Paging
@@ -54,7 +56,7 @@ class HomeFragment : Fragment(), HomeOceanRecyclerviewInterface {
     private lateinit var mIndicator: CircleIndicator3
 
     //recycler view
-    // 데이터를 잠을 그릇 즉 배열에 MypageModel
+    // 데이터를 잠을 그릇 즉 배열에 Model
     var modelList1 = ArrayList<HomeOceanModel>()
     var modelList2 = ArrayList<HomeBakkuModel>()
 
@@ -67,6 +69,7 @@ class HomeFragment : Fragment(), HomeOceanRecyclerviewInterface {
     // data from api
     private var events: MutableLiveData<ArrayList<EventResponse>> = MutableLiveData()
     private var oceans: MutableLiveData<ArrayList<OceanResponse>> = MutableLiveData()
+    //private var bakkus: MutableLiveData<ArrayList<BakkuResponse>> = MutableLiveData()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -146,6 +149,8 @@ class HomeFragment : Fragment(), HomeOceanRecyclerviewInterface {
                 locationListener
             )
         }
+
+       // val bakkuService = RetrofitClient.retrofit.create(BakkuService::class.java)
     }
 
     override fun onCreateView(

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/blue_200"
+    android:layout_margin="20dp"
+    app:cardCornerRadius="5dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/iv_bakku_detail_recycler"
+            android:src="@drawable/ic_mypage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_bakku_detail_recycler_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="단체/사용자명 - 해수욕장 이름"
+            android:theme="@style/M14"
+            app:layout_constraintLeft_toRightOf="@id/iv_bakku_detail_recycler"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_bakku_detail_recycler_date"
+            android:paddingLeft="10dp"
+            android:text="날짜"
+            android:theme="@style/M14"
+            app:layout_constraintLeft_toRightOf="@id/iv_bakku_detail_recycler"
+            app:layout_constraintTop_toBottomOf="@id/tv_bakku_detail_recycler_name"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_bakku_detail_recycler_kg"
+            android:text="@string/mypage_kg"
+            android:theme="@style/B15"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
